@@ -1,0 +1,104 @@
+#logo{
+    padding: 5px 0;
+    width:120px;
+}
+#appbar{
+    height: 100px;
+    padding: 20px;
+    background-color: #0071DC ;
+    box-shadow: none;
+    position: fixed;
+}
+#navitems1{
+    margin-top:14px ;
+    margin-left: 10px;
+    font-size: 15px;
+    font-weight: 500;
+    color: rgb(255, 255, 255);
+}
+#navitems2{
+    padding: 15px 20px 0px 50px ;
+    font-size: 15px;
+    font-weight: 700px ;
+    color: black;
+}
+#navbutton{
+    background-color:#89C4E1 ;
+    color: white;
+    border-radius: 5px;
+    padding: 0px 20px 0px 20px;
+    border-color: transparent;
+    font-size: 15px;
+}
+
+#rlogo{
+    width:150px;
+    padding: 40px;
+}
+
+#closeicon{
+font-size:40px;
+margin-top: 15%;
+padding: 0px 30px 0px 30px;
+}
+
+#menuicon{
+    font-size: 40px;
+    color: rgb(255, 255, 255);
+    margin-top: 10px;
+}
+#rnavitems1{
+    margin-top:10px ;
+    padding: 0px 20px 0px 50px;
+    font-size: 25px;
+    font-weight: 700;
+    color: black;
+}
+
+#rnavbutton{
+    background-color:#89C4E1 ;
+    color: white;
+    border-radius: 10px;
+    padding: 10px 20px 10px 20px;
+    border-color: transparent;
+    font-size: 25px;
+    margin:10px 20px;
+}
+
+#icon{
+    width: 30px;
+    height: 30px;
+    padding-top: 10px;
+}
+
+#searchbar{
+    display: flex;
+    margin-top: 10px;
+    border-radius: 100px;
+    background-color: #FFC220;
+}
+
+#searchinput{
+    height: 30px;
+    width: 400px;
+    margin: 3px 3px;
+    padding: 0 10px;
+    border-radius: 100px 0 0 100px;
+    border-color: transparent;
+}
+#searchinput:focus{
+    border-color: transparent;
+}
+#searchicon{
+    padding: 6px 10px 6px 5px;
+}
+
+#navcard{
+    width: 80%;
+    margin: 10px 20px;
+    display: flex;
+    padding: 10px 5px;
+    border-radius: 10px;
+    color: white;
+    background-color: #0071DC;
+}

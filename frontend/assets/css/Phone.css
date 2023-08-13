@@ -1,0 +1,46 @@
+#phone{
+    width: 250px;
+    height: 500px;
+    margin: 5% 10%;
+}
+
+#phonebtn{
+    background-color:#FFC220 ;
+    color: white;
+    margin: 50px 0;
+    padding: 10px 20px;
+    font-size: 20px;
+    width: 200px;
+    border-color: transparent;
+    border-radius: 10px;
+}
+#mcard{
+    width: 25vw;
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 5px 10px;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px;
+}
+
+#mcimg{
+    width: 100%;
+}
+
+#ctitle{
+    font-size: 20px;
+    font-weight: 500;
+}
+
+#detials{
+    padding: 10px 20px;
+}
+
+@media only screen and (max-width: 600px){
+    #phonebtn{
+        margin: 10px 0;
+        width: 100%;
+    }
+    #mcard{
+        width: 60vw;
+    }
+}
