@@ -1,10 +1,11 @@
 'use client'
-import PhoneCanvas  from '../../../Components/TheeDPhone'
+import HomeBody  from '../../../Components/HomeBody'
+import ThreeGlassCanvas from '../../../Components/SunGlassModel'
 
 const PrductHomePage = () => {
     return ( 
         <>
-       <PhoneCanvas/>  
+       <HomeBody/>  
         
         </>
      );

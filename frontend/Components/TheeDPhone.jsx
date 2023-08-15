@@ -1,8 +1,10 @@
+'use client'
 import React, { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, useGLTF } from '@react-three/drei';
 import { Environment } from '@react-three/drei'
 import { Box } from '@mui/material';
+import '../assets/css/Phone.css'
 
 const ThreeDPhone = () => {
     const { scene } = useGLTF('./Phone1.glb');

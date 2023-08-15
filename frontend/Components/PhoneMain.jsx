@@ -2,37 +2,74 @@ import React from 'react'
 import '../assets/css/Phone.css'
 import Phone from '../assets/img/phone2.png'
 import im from '../assets/img/im.png'
+import Image from 'next/image'
 
 import { Box } from '@mui/material'
 import case1 from '../assets/img/case.webp'
 import charger from '../assets/img/charger.webp'
+import { useRouter } from 'next/navigation'
+import useAxiosPrivate from '../helpers/customHooks/useAxiosPrivate'
+import localStorageAuth  from '../context/localStorageAuth'
+import { useQuery } from "@tanstack/react-query";
 
-const PhoneMain = () => {
+const PhoneMain = (props) => {
+    console.log(props.productId)
+    const{getAuth}=localStorageAuth()
+    const {isAuthenticated}=getAuth()
+    const axiosPrivate = useAxiosPrivate();
+    const router=useRouter()
+
+    if(isAuthenticated!=='true' || !props.productId ) router.push('/login')
+    const {data,status,isLoading}=useQuery({
+        queryKey:['products',props.productId],
+        queryFn: async () => {
+            try {
+                const response = await axiosPrivate.get(`/products/${props.productId}`);
+                console.log(response.data);
+                   
+                    if(response.data.role==='customer')
+                    {
+                        return response.data.product_data
+                    }else{
+                        
+                        router.push('/login')
+
+                    }
+                
+
+            } catch (err) {
+                console.error(err);
+                router.push('/login')
+            }
+        }})
+
     return (
+
         <div>
+        {isLoading && 'Loading'}
+        {data!=null &&<>
             <Box sx={{ display: { xs: "none", sm: "block" } }}>
                 <div style={{ display: "flex", gap: "20", margin: "10px 10%" }}>
                     <div style={{ margin: "7% 5%" }}>
                         <div style={{ display: "flex" }}>
                             <div>
-                                <h1 style={{ fontSize: "60px" }}>IPhone</h1>
-                                <h3 style={{ fontSize: "35px", color: "#4E4848" }}>RS 90,000</h3>
+                                <h1 style={{ fontSize: "60px" }}>{data.product_name}</h1>
+                                <h3 style={{ fontSize: "35px", color: "#4E4848" }}>Price: ₹{data.product_price} </h3>
                             </div>
-                            <img style={{ width: "70px", height: "70px", padding: "30px 40px" }} src={im} alt="3d" />
+                           
                         </div>
-                        <h4 style={{ fontSize: "20px", color: "black", fontWeight: "300" }}>Design is not just what it looks like and feels like. Design is how it works</h4>
+                        <h4 style={{ fontSize: "20px", color: "black", fontWeight: "300" }}>{data.description}</h4>
                         <h5 style={{ fontSize: "25px", color: "#FFC220" }}>Features</h5>
-                        <li style={{ margin: "20px 0 0 0" }}>8 GB RAM | 128 GB ROM</li>
-                        <li>16.71 cm (6.58 inch) Full HD+ Display</li>
-                        <li>50MP + 2MP | 8MP Front Camera</li>
-                        <li>5000 mAh Battery</li>
-                        <li>Dimensity 6020 Processor</li>
+                        {data.features.map((specs,index)=> (
+                            <li style={{ margin: "20px 0 0 0" }} key={index}>{specs.key}: {specs.value}</li>
+                        ))}
+                        
                         <div style={{ display: "flex", gap: 20 }}>
                             <button id="phonebtn">Buy</button>
                             <button id="phonebtn">Add Cart</button>
                         </div>
                     </div>
-                    <img id='phone' src={Phone} alt="" />
+                    <Image id='phone' width={100} height={100} src={data.image_url} alt="" />
                 </div>
                 <div style={{ textAlign: "left", margin: "10px 10% 50px 10%" }}>
                 <h2 style={{ margin: "0 0 5% 0" }}>
@@ -96,6 +133,8 @@ const PhoneMain = () => {
                 </div>
                 </div>
             </Box>
+        </>}
+          
         </div>
     )
 }
