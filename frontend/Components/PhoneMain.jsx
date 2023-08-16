@@ -11,6 +11,7 @@ import { useRouter } from 'next/navigation'
 import useAxiosPrivate from '../helpers/customHooks/useAxiosPrivate'
 import localStorageAuth  from '../context/localStorageAuth'
 import { useQuery } from "@tanstack/react-query";
+import ash from '../assets/img/ash.jpg'
 
 const PhoneMain = (props) => {
     console.log(props.productId)
@@ -43,6 +44,7 @@ const PhoneMain = (props) => {
             }
         }})
 
+// console.log(img_data['ashs'])
     return (
 
         <div>
@@ -69,7 +71,7 @@ const PhoneMain = (props) => {
                             <button id="phonebtn">Add Cart</button>
                         </div>
                     </div>
-                    <Image id='phone' width={100} height={100} src={data.image_url} alt="" />
+                    <Image id='phone'  width={150} height={100} src={data.image_url} alt="" />
                 </div>
                 <div style={{ textAlign: "left", margin: "10px 10% 50px 10%" }}>
                 <h2 style={{ margin: "0 0 5% 0" }}>
@@ -94,21 +96,20 @@ const PhoneMain = (props) => {
                 </div>
             </Box>
             <Box sx={{ display: { xs: "block", sm: "none" }, margin: "10px 10%" }}>
-                <img id='phone' src={Phone} alt="" />
+                <Image id='phone' width={150} height={100} src={data.image_url}  alt="" />
                 <div style={{ display: "flex" }}>
                     <div>
-                        <h1 style={{ fontSize: "60px" }}>IPhone</h1>
-                        <h3 style={{ fontSize: "35px", color: "#4E4848" }}>RS 90,000</h3>
+                        <h1 style={{ fontSize: "60px" }}>{data.product_name}</h1>
+                        <h3 style={{ fontSize: "35px", color: "#4E4848" }}>Price: ₹{data.product_price} </h3>
                     </div>
-                    <img style={{ width: "70px", height: "70px", padding: "30px 10px" }} src={im} alt="3d" />
+                    
                 </div>
-                <h4 style={{ fontSize: "20px", color: "black", fontWeight: "300" }}>Design is not just what it looks like and feels like. Design is how it works</h4>
+                <h4 style={{ fontSize: "20px", color: "black", fontWeight: "300" }}>{data.description}</h4>
                 <h5 style={{ fontSize: "25px", color: "#FFC220" }}>Features</h5>
-                <li style={{ margin: "20px 0 0 0" }}>8 GB RAM | 128 GB ROM</li>
-                <li>16.71 cm (6.58 inch) Full HD+ Display</li>
-                <li>50MP + 2MP | 8MP Front Camera</li>
-                <li>5000 mAh Battery</li>
-                <li>Dimensity 6020 Processor</li>
+
+                 {data.features.map((specs,index)=> (
+                            <li style={{ margin: "20px 0 0 0" }} key={index}>{specs.key}: {specs.value}</li>
+                        ))}
                 <button style={{ margin: "20% 0 0 0" }} id="phonebtn">Buy</button>
                 <button style={{ margin: "20px 0 22% 0" }} id="phonebtn">Add Cart</button>
                 <div style={{ textAlign: "left", margin: "10px 10% 50px 10%" }}>

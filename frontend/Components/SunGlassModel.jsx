@@ -3,6 +3,11 @@ import { Canvas } from '@react-three/fiber';
 import { OrbitControls, useGLTF } from '@react-three/drei';
 import { Environment } from '@react-three/drei'
 import { Box } from '@mui/material';
+import '../assets/css/Phone.css'
+import { useRouter } from 'next/navigation'
+import useAxiosPrivate from '../helpers/customHooks/useAxiosPrivate'
+import localStorageAuth  from '../context/localStorageAuth'
+import { useQuery } from "@tanstack/react-query";
 
 const ThreeGlass = () => {
     const { scene } = useGLTF('./glass.glb');
@@ -17,6 +22,11 @@ const ThreeGlass = () => {
 };
 
 const ThreeGlassCanvas = () => {
+    const{getAuth}=localStorageAuth()
+    const {isAuthenticated}=getAuth()
+    const router=useRouter()
+
+    if(isAuthenticated!=='true') router.push('/login')
     return (
         <>
         <Box sx={{display:{sm:"block",xs:"none"}}}>
