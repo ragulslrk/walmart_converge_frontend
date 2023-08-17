@@ -14,6 +14,7 @@ import vr from '../assets/img/vr.png'
 import image from '../assets/img/image.png'
 import cart from '../assets/img/carts.png'
 import user from '../assets/img/user.png'
+import Link from 'next/link'
 
 function Navbar() {
     const [fun, setfun] = useState(false)
@@ -31,7 +32,10 @@ function Navbar() {
                             </div>
                             <div style={{ display: "flex", margin: "1% 0 0 10%" }}>
                                 <Image id="icon" width={30} height={30} src={image} alt='icon' />
+                                <Link href='/products/imageSearch'>
                                 <h1 style={{ width: "150px" }} id='navitems1'>Product Detection</h1>
+                                </Link>
+                               
                             </div>
                         </div>
                         <div style={{ display: "flex", gap: 40, margin: "5px 10px" }}>
