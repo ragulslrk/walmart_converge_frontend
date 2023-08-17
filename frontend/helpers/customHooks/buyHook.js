@@ -5,18 +5,19 @@ import { QueryClient,useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation'
 import localStorageAuth  from '../../context/localStorageAuth'
 
- const loginHandler=()=>{
-  const [isLoading,setLoading]=useState(false)
+ const buyHandler=()=>{
+  const [is_Loading,setLoading]=useState(false)
   const [isError,setError]=useState(false)
   const [errMsg,setErrMsg]=useState('')
   const router=useRouter()
-  const {setAuth}=localStorageAuth()
-  const loginMutation=useMutation({mutationFn: ({username,password})=>{
-  console.log('in mutation fn ',username,password)
+  const [payUrl,setPayUrl]=useState('')
+  // const {setAuth}=localStorageAuth()
+  const buyMutation=useMutation({mutationFn: ({product_id})=>{
+  console.log('in buy mutation',product_id)
     //set the loading state
     setLoading(true)
-    axios.post('/login',
-    JSON.stringify({ username, password }),
+    axios.post('/orders',
+    JSON.stringify({product_id}),
       {
           headers: { 'Content-Type': 'application/json' },
           withCredentials: true
@@ -32,9 +33,8 @@ import localStorageAuth  from '../../context/localStorageAuth'
 
         console.log(res.data)
 
-        if(res?.data?.access_token){
-          setAuth(res.data.access_token,'true')
-          router.push('/products')
+        if(res?.data?.payment_url){
+          setPayUrl(res?.data?.payment_url)
 
         }
 
@@ -46,7 +46,7 @@ import localStorageAuth  from '../../context/localStorageAuth'
         console.log('in error')
         if(err?.response?.data)
         { 
-          setAuth(null,'false')
+          
           setError(true)
           setErrMsg(err.response.data.msg)
           
@@ -58,11 +58,11 @@ import localStorageAuth  from '../../context/localStorageAuth'
 
   }})
 
-  const loginHook=({ username, password })=>{
+  const BuyHook=({ product_id })=>{
 
-    loginMutation.mutate({ username, password })
+    buyMutation.mutate({ product_id })
   }
-  return {loginHook,isLoading,isError,errMsg,setError}
+  return {BuyHook,is_Loading,isError,errMsg,setError,payUrl}
 }
 
-export default loginHandler 
+export default buyHandler 
