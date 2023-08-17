@@ -80,27 +80,7 @@ const PhoneMain = (props) => {
                     </div>
                     <Image id='phone'  width={150} height={100} src={data.image_url} alt="" />
                 </div>
-                <div style={{ textAlign: "left", margin: "10px 10% 50px 10%" }}>
-                <h2 style={{ margin: "0 0 5% 0" }}>
-                    Recommended Product
-                </h2>
-                <div style={{display:"flex",gap:30}}>
-                    <div id='mcard'>
-                            <img src={case1} id='mcimg' alt="case" />
-                        <div id='detials'>
-                            <h2 id='ctitle'>Iphone Case</h2>
-                            <h3>Rs 2000</h3>
-                        </div>
-                    </div>
-                    <div id='mcard'>
-                            <img src={charger} id='mcimg' alt="case" />
-                        <div id='detials'>
-                            <h2 id='ctitle'>Iphone charger</h2>
-                            <h3>Rs 2000</h3>
-                        </div>
-                    </div>
-                </div>
-                </div>
+                
             </Box>
             <Box sx={{ display: { xs: "block", sm: "none" }, margin: "10px 10%" }}>
                 <Image id='phone' width={150} height={100} src={data.image_url}  alt="" />

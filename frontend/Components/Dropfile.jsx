@@ -3,6 +3,7 @@ import '../assets/css/DropFile.css'
 import upload from '../assets/img/file.png'
 import folder from '../assets/img/folder.png'
 import { Box } from '@mui/material';
+import Image from 'next/image'
 
 
 function FileUploadComponent() {
@@ -37,14 +38,14 @@ function FileUploadComponent() {
                 {uploadedFile ? (
                     <div style={{ display: "flex", flexDirection: "column", textAlign: "center" }}>
                         <div style={{ display: "flex", justifyContent: "center" }}>
-                            <img style={{ width: "50px" }} src={folder} alt="img" />
+                            <Image width={50} src={folder} alt="img" />
                         </div>
                         <p>File uploaded: {uploadedFile.name}</p>
                     </div>
                 ) : (
                     <div style={{ display: "flex", flexDirection: "column", textAlign: "center" }}>
                         <div style={{ display: "flex", justifyContent: "center" }}>
-                            <img style={{ width: "50px" }} src={upload} alt="img" />
+                            <Image width={50}  src={upload} alt="img" />
                         </div>
                         <p>Drop your file here or</p>
                         <input style={{ margin: "10px 0px 10px 20%" }} type="file" onChange={handleFileUpload} />
