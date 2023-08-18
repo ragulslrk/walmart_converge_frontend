@@ -1,6 +1,6 @@
 
 import axios from 'axios';
-const BASE_URL = 'http://localhost:3232';
+const BASE_URL = 'https://severus.cyclic.cloud';
 
 export default axios.create({
     baseURL: BASE_URL
